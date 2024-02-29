@@ -1,0 +1,13 @@
+{
+  "name": "@abp.Dns/cloudflare",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": ">=14",
+    "@angular/core": ">=14",
+    "@abp/ng.core": ">=8.0.4",
+    "@abp/ng.theme.shared": ">=8.0.4"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0"
+  }
+}

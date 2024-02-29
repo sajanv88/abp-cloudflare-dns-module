@@ -1,0 +1,9 @@
+﻿using System.Threading.Tasks;
+using Volo.Abp.Application.Services;
+
+namespace Abp.Dns.Cloudflare.Dns;
+
+public interface IDnsService : IApplicationService
+{
+    Task<DnsDto> GetZonesAsync();
+}

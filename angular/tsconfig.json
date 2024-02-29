@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@abp.Dns/cloudflare": [
+        "projects/cloudflare/src/public-api.ts"
+      ],
+      "@abp.Dns/cloudflare/config": [
+        "projects/cloudflare/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/cloudflare/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/cloudflare/src/lib/proxy/*"]
+    }
+  }
+}

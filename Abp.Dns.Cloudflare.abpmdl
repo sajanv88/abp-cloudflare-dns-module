@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Abp.Dns.Cloudflare.Domain.Shared": {
+      "path": "src/Abp.Dns.Cloudflare.Domain.Shared/Abp.Dns.Cloudflare.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Domain": {
+      "path": "src/Abp.Dns.Cloudflare.Domain/Abp.Dns.Cloudflare.Domain.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Application.Contracts": {
+      "path": "src/Abp.Dns.Cloudflare.Application.Contracts/Abp.Dns.Cloudflare.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Application": {
+      "path": "src/Abp.Dns.Cloudflare.Application/Abp.Dns.Cloudflare.Application.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.EntityFrameworkCore": {
+      "path": "src/Abp.Dns.Cloudflare.EntityFrameworkCore/Abp.Dns.Cloudflare.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.MongoDB": {
+      "path": "src/Abp.Dns.Cloudflare.MongoDB/Abp.Dns.Cloudflare.MongoDB.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.HttpApi": {
+      "path": "src/Abp.Dns.Cloudflare.HttpApi/Abp.Dns.Cloudflare.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.HttpApi.Client": {
+      "path": "src/Abp.Dns.Cloudflare.HttpApi.Client/Abp.Dns.Cloudflare.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.TestBase": {
+      "path": "test/Abp.Dns.Cloudflare.TestBase/Abp.Dns.Cloudflare.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.EntityFrameworkCore.Tests": {
+      "path": "test/Abp.Dns.Cloudflare.EntityFrameworkCore.Tests/Abp.Dns.Cloudflare.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.MongoDB.Tests": {
+      "path": "test/Abp.Dns.Cloudflare.MongoDB.Tests/Abp.Dns.Cloudflare.MongoDB.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.Domain.Tests": {
+      "path": "test/Abp.Dns.Cloudflare.Domain.Tests/Abp.Dns.Cloudflare.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.Application.Tests": {
+      "path": "test/Abp.Dns.Cloudflare.Application.Tests/Abp.Dns.Cloudflare.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.HttpApi.Host": {
+      "path": "host/Abp.Dns.Cloudflare.HttpApi.Host/Abp.Dns.Cloudflare.HttpApi.Host.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.Web": {
+      "path": "src/Abp.Dns.Cloudflare.Web/Abp.Dns.Cloudflare.Web.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Abp.Dns.Cloudflare.HttpApi.Client.ConsoleTestApp/Abp.Dns.Cloudflare.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Abp.Dns.Cloudflare.Web.Host": {
+      "path": "host/Abp.Dns.Cloudflare.Web.Host/Abp.Dns.Cloudflare.Web.Host.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.AuthServer": {
+      "path": "host/Abp.Dns.Cloudflare.AuthServer/Abp.Dns.Cloudflare.AuthServer.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.Host.Shared": {
+      "path": "host/Abp.Dns.Cloudflare.Host.Shared/Abp.Dns.Cloudflare.Host.Shared.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.Web.Unified": {
+      "path": "host/Abp.Dns.Cloudflare.Web.Unified/Abp.Dns.Cloudflare.Web.Unified.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.Blazor": {
+      "path": "src/Abp.Dns.Cloudflare.Blazor/Abp.Dns.Cloudflare.Blazor.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Blazor.Host": {
+      "path": "host/Abp.Dns.Cloudflare.Blazor.Host/Abp.Dns.Cloudflare.Blazor.Host.abppkg",
+      "folder": "host"
+    },
+    "Abp.Dns.Cloudflare.Blazor.Server": {
+      "path": "src/Abp.Dns.Cloudflare.Blazor.Server/Abp.Dns.Cloudflare.Blazor.Server.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Blazor.WebAssembly": {
+      "path": "src/Abp.Dns.Cloudflare.Blazor.WebAssembly/Abp.Dns.Cloudflare.Blazor.WebAssembly.abppkg",
+      "folder": "src"
+    },
+    "Abp.Dns.Cloudflare.Blazor.Server.Host": {
+      "path": "host/Abp.Dns.Cloudflare.Blazor.Server.Host/Abp.Dns.Cloudflare.Blazor.Server.Host.abppkg",
+      "folder": "host"
+    }
+  }
+}

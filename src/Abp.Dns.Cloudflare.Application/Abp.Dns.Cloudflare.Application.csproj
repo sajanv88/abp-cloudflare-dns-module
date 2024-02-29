@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Abp.Dns.Cloudflare</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="8.0.4" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="8.0.4" />
+    <ProjectReference Include="..\Abp.Dns.Cloudflare.Application.Contracts\Abp.Dns.Cloudflare.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Abp.Dns.Cloudflare.Domain\Abp.Dns.Cloudflare.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

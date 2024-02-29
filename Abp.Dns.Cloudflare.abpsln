@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Abp.Dns.Cloudflare": {
+      "path": "Abp.Dns.Cloudflare.abpmdl"
+    }
+  }
+}

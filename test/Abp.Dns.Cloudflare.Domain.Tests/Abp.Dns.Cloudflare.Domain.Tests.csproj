@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Abp.Dns.Cloudflare</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Abp.Dns.Cloudflare.Domain\Abp.Dns.Cloudflare.Domain.csproj" />
+    <ProjectReference Include="..\Abp.Dns.Cloudflare.TestBase\Abp.Dns.Cloudflare.TestBase.csproj" />
+  </ItemGroup>
+
+
+</Project>
