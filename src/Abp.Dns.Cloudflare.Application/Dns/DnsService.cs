@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Volo.Abp;
+using Volo.Abp.Features;
 
 namespace Abp.Dns.Cloudflare.Dns;
 
@@ -13,7 +14,10 @@ public class DnsService: CloudflareAppService, IDnsService
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
     private readonly ILogger<DnsService> _logger;
-    public DnsService(HttpClient httpClient, IConfiguration configuration, ILogger<DnsService> logger)
+    public DnsService(
+        HttpClient httpClient,
+        IConfiguration configuration,
+        ILogger<DnsService> logger)
     {
         _httpClient = httpClient;
         _configuration = configuration;
@@ -37,4 +41,10 @@ public class DnsService: CloudflareAppService, IDnsService
             throw new UserFriendlyException("Error getting DNS", e.Message);
         }
     }
+
+    public  Task EnableDnsManagement(Guid tenantId)
+    {
+        throw new NotImplementedException();
+    }
+ 
 }

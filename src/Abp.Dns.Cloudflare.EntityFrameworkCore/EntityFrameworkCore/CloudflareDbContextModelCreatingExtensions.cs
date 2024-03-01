@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Abp.Dns.Cloudflare.Models;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Abp.Dns.Cloudflare.EntityFrameworkCore;
 
@@ -10,6 +12,10 @@ public static class CloudflareDbContextModelCreatingExtensions
     {
         Check.NotNull(builder, nameof(builder));
 
+        builder.Entity<CloudflareCredential>(b =>
+        {
+            b.ConfigureByConvention();
+        });
         /* Configure all entities here. Example:
 
         builder.Entity<Question>(b =>

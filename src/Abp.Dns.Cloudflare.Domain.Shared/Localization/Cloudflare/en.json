@@ -2,6 +2,9 @@
   "culture": "en",
   "texts": {
     "MyAccount":  "My account",
-    "SamplePageMessage": "A sample page for the Cloudflare module"
+    "SamplePageMessage": "A sample page for the Cloudflare module",
+    "CloudflareDnsManagementDisplayName": "Cloudflare Dns Management",
+    "CloudflareDnsManagementStatus": "Feature Status"
+    
   }
 }

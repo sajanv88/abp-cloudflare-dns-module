@@ -8,3 +8,4 @@ public static class CloudflareSettings
      * public const string MySettingName = GroupName + ".MySettingName";
      */
 }
+    
