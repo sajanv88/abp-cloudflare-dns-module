@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using Abp.Dns.Cloudflare.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Volo.Abp;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Features;
 
 namespace Abp.Dns.Cloudflare.Dns;
@@ -14,14 +17,16 @@ public class DnsService: CloudflareAppService, IDnsService
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _configuration;
     private readonly ILogger<DnsService> _logger;
+    private readonly IRepository<CloudflareCredential, Guid> _cloudflareCredentialRepository;
     public DnsService(
         HttpClient httpClient,
         IConfiguration configuration,
-        ILogger<DnsService> logger)
+        ILogger<DnsService> logger, IRepository<CloudflareCredential, Guid> cloudflareCredentialRepository)
     {
         _httpClient = httpClient;
         _configuration = configuration;
         _logger = logger;
+        _cloudflareCredentialRepository = cloudflareCredentialRepository;
     }
     
     public async Task<DnsDto> GetZonesAsync()
@@ -42,9 +47,29 @@ public class DnsService: CloudflareAppService, IDnsService
         }
     }
 
+    public async Task CreateDnsCredentialAsync(CreateDnsCredentialDto input)
+    {
+        var credential = new CloudflareCredential() { ApiKey = input.ApiKey, ZoneId = input.ZoneId };
+        await _cloudflareCredentialRepository.InsertAsync(credential);
+    }
+
     public  Task EnableDnsManagement(Guid tenantId)
     {
         throw new NotImplementedException();
     }
- 
+
+    public async Task<List<CloudflareCredential>> GetCredentialsAsync()
+    {
+        return await _cloudflareCredentialRepository.GetListAsync();
+    }
+
+    public Task<CloudflareCredential> GetCredentialAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
+    {
+        throw new NotImplementedException();
+    }
 }

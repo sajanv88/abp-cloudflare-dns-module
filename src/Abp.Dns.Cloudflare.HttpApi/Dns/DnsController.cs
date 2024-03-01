@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Abp.Dns.Cloudflare.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -21,5 +24,40 @@ public class DnsController : CloudflareController, IDnsService
     public async Task<DnsDto> GetZonesAsync()
     {
         return await _dnsService.GetZonesAsync();
+    }
+
+    
+    [HttpPost]
+    public async  Task CreateDnsCredentialAsync(CreateDnsCredentialDto input)
+    {
+         await _dnsService.CreateDnsCredentialAsync(input);
+    }
+
+    [Route("enableDnsManagement/tenant/{tenantId}")]
+    [HttpGet]
+    public Task EnableDnsManagement(Guid tenantId)
+    {
+        throw new NotImplementedException();
+    }
+
+    [Route("allCredentials")]
+    [HttpGet]
+    public async Task<List<CloudflareCredential>> GetCredentialsAsync()
+    {
+        return await _dnsService.GetCredentialsAsync();        
+    }
+
+    [Route("credential/{id}")]
+    [HttpGet]
+    public Task<CloudflareCredential> GetCredentialAsync(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    [Route("credential/tenant/{tenantId}")]
+    [HttpGet]
+    public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
+    {
+        throw new NotImplementedException();
     }
 }

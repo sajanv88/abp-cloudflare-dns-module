@@ -14,6 +14,7 @@ public static class CloudflareDbContextModelCreatingExtensions
 
         builder.Entity<CloudflareCredential>(b =>
         {
+            b.ToTable("CloudflareCredentials");
             b.ConfigureByConvention();
         });
         /* Configure all entities here. Example:

@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Abp.Dns.Cloudflare.Migrations
 {
     /// <inheritdoc />
-    public partial class CloudflareCredentials : Migration
+    public partial class AddCloudCredentials : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CloudflareCredential",
+                name: "CloudflareCredentials",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -24,7 +24,7 @@ namespace Abp.Dns.Cloudflare.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CloudflareCredential", x => x.Id);
+                    table.PrimaryKey("PK_CloudflareCredentials", x => x.Id);
                 });
         }
 
@@ -32,7 +32,7 @@ namespace Abp.Dns.Cloudflare.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CloudflareCredential");
+                name: "CloudflareCredentials");
         }
     }
 }

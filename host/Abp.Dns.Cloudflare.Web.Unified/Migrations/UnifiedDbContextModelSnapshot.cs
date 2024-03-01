@@ -56,7 +56,7 @@ namespace Abp.Dns.Cloudflare.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CloudflareCredential");
+                    b.ToTable("CloudflareCredentials", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>

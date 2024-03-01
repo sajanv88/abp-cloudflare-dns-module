@@ -13,8 +13,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Abp.Dns.Cloudflare.Migrations
 {
     [DbContext(typeof(UnifiedDbContext))]
-    [Migration("20240301151725_CloudflareCredentials")]
-    partial class CloudflareCredentials
+    [Migration("20240301164621_AddCloudCredentials")]
+    partial class AddCloudCredentials
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,7 +59,7 @@ namespace Abp.Dns.Cloudflare.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CloudflareCredential");
+                    b.ToTable("CloudflareCredentials", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
