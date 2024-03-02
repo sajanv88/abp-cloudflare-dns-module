@@ -52,7 +52,7 @@ public class CloudflareWebModule : AbpModule
 
         Configure<RazorPagesOptions>(options =>
         {
-                //Configure authorization.
-            });
+            //Configure authorization.
+        });
     }
 }

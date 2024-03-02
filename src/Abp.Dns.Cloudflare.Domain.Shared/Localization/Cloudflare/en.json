@@ -4,7 +4,9 @@
     "MyAccount":  "My account",
     "SamplePageMessage": "A sample page for the Cloudflare module",
     "CloudflareDnsManagementDisplayName": "Cloudflare Dns Management",
-    "CloudflareDnsManagementStatus": "Feature Status"
-    
+    "CloudflareDnsManagementStatus": "Feature Status",
+    "NotAuthenticatedMessage": "You are not authenticated to use this page",
+    "NotAuthorizedMessage": "You are not authorized to use this feature",
+    "NotEnabledMessage": "This feature is not enabled. Contact your administrator"
   }
 }
