@@ -53,10 +53,31 @@ public class DnsController : CloudflareController, IDnsService
     {
         throw new NotImplementedException();
     }
+    
+    [Route("credential/{id}")]
+    [HttpPut]
+    public Task UpdateDnsCredentialAsync(Guid id, CreateDnsCredentialDto input)
+    {
+        return _dnsService.UpdateDnsCredentialAsync(id, input);
+    }
+
+    [Route("zone/{zoneId}")]
+    [HttpGet]
+    public Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
+    {
+        throw new NotImplementedException();
+    }
 
     [Route("credential/tenant/{tenantId}")]
     [HttpGet]
     public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
+    {
+        throw new NotImplementedException();
+    }
+
+    [Route("credentials/{id}/tenants")]
+    [HttpGet]
+    public Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
     {
         throw new NotImplementedException();
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -63,12 +64,35 @@ public class DnsService: CloudflareAppService, IDnsService
         return await _cloudflareCredentialRepository.GetListAsync();
     }
 
-    public Task<CloudflareCredential> GetCredentialAsync(Guid id)
+    public async Task<CloudflareCredential> GetCredentialAsync(Guid id)
+    {
+        return await _cloudflareCredentialRepository.GetAsync(id);
+    }
+
+    public async Task UpdateDnsCredentialAsync(Guid credentialId, CreateDnsCredentialDto input)
+    {
+        var existingCredential = await _cloudflareCredentialRepository.GetAsync(credentialId);
+        if (existingCredential == null)
+        {
+            throw new UserFriendlyException("Credential not found", "400");
+        }
+        existingCredential.ApiKey = input.ApiKey;
+        existingCredential.ZoneId = input.ZoneId;
+        await _cloudflareCredentialRepository.UpdateAsync(existingCredential);
+    }
+
+    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
     {
         throw new NotImplementedException();
     }
 
+    
     public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
     {
         throw new NotImplementedException();
     }
