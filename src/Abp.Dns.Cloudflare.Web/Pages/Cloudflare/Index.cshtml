@@ -52,7 +52,7 @@ else
                             <abp-dropdown-menu>
                                 <abp-dropdown-item href=@($"/Cloudflare/Dns/Zone/{credential.value.ZoneId}")>Show Dns</abp-dropdown-item>
                                 <abp-dropdown-item href="javascript:void(0)" onclick="onEditCredential('@credential.value.Id')">Edit</abp-dropdown-item>
-                                <abp-dropdown-item href="#">Delete</abp-dropdown-item>
+                                <abp-dropdown-item href="#" onclick="onDeleteCredential('@credential.value.Id')">Delete</abp-dropdown-item>
                             </abp-dropdown-menu>
                         </abp-dropdown>
                     </td>
@@ -85,6 +85,18 @@ else
            addCredentialModel.onResult(function () {
                console.log('Modal closed', arguments);
                location.reload();
+            });
+        }
+        
+        function onDeleteCredential(credentialId) {
+            console.log('Delete button clicked', credentialId);
+            const deleteCredentialModel = new abp.ModalManager({
+                viewUrl: '/Cloudflare/Dns/DeleteCredentialModel',
+            });
+            deleteCredentialModel.open({ credentialId });
+            deleteCredentialModel.onResult(function () {
+                console.log('Modal closed', arguments);
+                location.reload();
             });
         }
     </script>

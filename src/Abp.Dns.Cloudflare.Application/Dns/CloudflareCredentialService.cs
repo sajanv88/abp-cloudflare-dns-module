@@ -40,9 +40,9 @@ public class CloudflareCredentialService: CloudflareAppService, ICloudflareCrede
         await _cloudflareCredentialRepository.UpdateAsync(existingCredential);
     }
 
-    public Task DeleteDnsCredentialAsync(Guid id)
+    public async Task DeleteDnsCredentialAsync(Guid id)
     {
-        throw new NotImplementedException();
+        await _cloudflareCredentialRepository.DeleteAsync(id);
     }
 
     public async Task<List<CloudflareCredential>> GetCredentialsAsync(PaginatedDto? filter)
