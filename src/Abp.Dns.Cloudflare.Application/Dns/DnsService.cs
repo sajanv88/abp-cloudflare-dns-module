@@ -48,51 +48,7 @@ public class DnsService: CloudflareAppService, IDnsService
         }
     }
 
-    public async Task CreateDnsCredentialAsync(CreateDnsCredentialDto input)
-    {
-        var credential = new CloudflareCredential() { ApiKey = input.ApiKey, ZoneId = input.ZoneId };
-        await _cloudflareCredentialRepository.InsertAsync(credential);
-    }
-
-    public  Task EnableDnsManagement(Guid tenantId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<List<CloudflareCredential>> GetCredentialsAsync()
-    {
-        return await _cloudflareCredentialRepository.GetListAsync();
-    }
-
-    public async Task<CloudflareCredential> GetCredentialAsync(Guid id)
-    {
-        return await _cloudflareCredentialRepository.GetAsync(id);
-    }
-
-    public async Task UpdateDnsCredentialAsync(Guid credentialId, CreateDnsCredentialDto input)
-    {
-        var existingCredential = await _cloudflareCredentialRepository.GetAsync(credentialId);
-        if (existingCredential == null)
-        {
-            throw new UserFriendlyException("Credential not found", "400");
-        }
-        existingCredential.ApiKey = input.ApiKey;
-        existingCredential.ZoneId = input.ZoneId;
-        await _cloudflareCredentialRepository.UpdateAsync(existingCredential);
-    }
-
-    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
-    {
-        throw new NotImplementedException();
-    }
-
-    
-    public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
+    public Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
     {
         throw new NotImplementedException();
     }

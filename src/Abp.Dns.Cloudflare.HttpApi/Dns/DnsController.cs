@@ -25,60 +25,13 @@ public class DnsController : CloudflareController, IDnsService
     {
         return await _dnsService.GetZonesAsync();
     }
-
     
-    [HttpPost]
-    public async  Task CreateDnsCredentialAsync(CreateDnsCredentialDto input)
-    {
-         await _dnsService.CreateDnsCredentialAsync(input);
-    }
-
-    [Route("enableDnsManagement/tenant/{tenantId}")]
-    [HttpGet]
-    public Task EnableDnsManagement(Guid tenantId)
-    {
-        throw new NotImplementedException();
-    }
-
-    [Route("allCredentials")]
-    [HttpGet]
-    public async Task<List<CloudflareCredential>> GetCredentialsAsync()
-    {
-        return await _dnsService.GetCredentialsAsync();        
-    }
-
-    [Route("credential/{id}")]
-    [HttpGet]
-    public Task<CloudflareCredential> GetCredentialAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-    
-    [Route("credential/{id}")]
-    [HttpPut]
-    public Task UpdateDnsCredentialAsync(Guid id, CreateDnsCredentialDto input)
-    {
-        return _dnsService.UpdateDnsCredentialAsync(id, input);
-    }
-
     [Route("zone/{zoneId}")]
     [HttpGet]
-    public Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
+    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
     {
-        throw new NotImplementedException();
+        return await _dnsService.GetDnsRecordsByZoneIdAsync(zoneId);
     }
 
-    [Route("credential/tenant/{tenantId}")]
-    [HttpGet]
-    public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
-    {
-        throw new NotImplementedException();
-    }
-
-    [Route("credentials/{id}/tenants")]
-    [HttpGet]
-    public Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
-    {
-        throw new NotImplementedException();
-    }
+    
 }
