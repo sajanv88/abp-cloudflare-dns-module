@@ -33,40 +33,44 @@ else
         
         </thead>
         <tbody>
-            @foreach (var credential in Model.Credentials.Select((value, index) => new { value, index }))
-            {
-                <tr scope="row">
-                    <td class="align-middle">@(credential.index + 1)</td>
-                    @if(credential.value.TenantId != null)
-                    {
-                        <td class="align-middle">@credential.value.TenantId </td>
-                    }
-                    else
-                    {
-                        <td class="align-middle">N/A</td>
-                    }
-                    <td class="align-middle">@credential.value.ZoneId</td>
-                    <td>
-                        <abp-dropdown>
-                            <abp-dropdown-button button-type="Primary" text="Actions" />
-                            <abp-dropdown-menu>
-                                <abp-dropdown-item href=@($"/Cloudflare/Dns/Zone/{credential.value.ZoneId}")>Show Dns</abp-dropdown-item>
-                                <abp-dropdown-item href="javascript:void(0)" onclick="onEditCredential('@credential.value.Id')">Edit</abp-dropdown-item>
-                                <abp-dropdown-item href="#" onclick="onDeleteCredential('@credential.value.Id')">Delete</abp-dropdown-item>
-                            </abp-dropdown-menu>
-                        </abp-dropdown>
-                    </td>
-                </tr>
-            }
+        @foreach (var credential in Model.Credentials.Select((value, index) => new { value, index }))
+        {
+            <tr scope="row">
+                <td class="align-middle">@(credential.index + 1)</td>
+                @if(credential.value.TenantId != null)
+                {
+                    <td class="align-middle">@credential.value.TenantId </td>
+                }
+                else
+                {
+                    <td class="align-middle">N/A</td>
+                }
+                <td class="align-middle">@credential.value.ZoneId</td>
+                <td>
+                    <abp-dropdown>
+                        <abp-dropdown-button button-type="Primary" text="Actions" />
+                        <abp-dropdown-menu>
+                            <abp-dropdown-item href=@($"/Cloudflare/Dns/Zone/{credential.value.ZoneId}")>Show Dns</abp-dropdown-item>
+                            <abp-dropdown-item href="javascript:void(0)" onclick="onEditCredential('@credential.value.Id')">Edit</abp-dropdown-item>
+                            <abp-dropdown-item href="#" onclick="onDeleteCredential('@credential.value.Id')">Delete</abp-dropdown-item>
+                        </abp-dropdown-menu>
+                    </abp-dropdown>
+                </td>
+            </tr>
+        }
         </tbody>
     </abp-table>
-    <abp-paginator model="Model.PagerModel" show-info="true"></abp-paginator>
+    @if (Model.HidePager)
+    {
+        <abp-paginator model="Model.PagerModel" show-info="true"></abp-paginator>
+    }
+    
 
     <script>
          
         document.addEventListener("DOMContentLoaded", function () {
              const addCredentialModel = new abp.ModalManager({
-                viewUrl: '/Cloudflare/Dns/CredentialModal',
+                viewUrl: '/Cloudflare/Dns/CredentialModal?handler=Create',
             });
             document.getElementById('AddZoneCredentialBtn').addEventListener('click', function () {
                 addCredentialModel.open();  
@@ -79,7 +83,7 @@ else
         function onEditCredential(credentialId) {
            console.log('Edit button clicked', credentialId);
            const addCredentialModel = new abp.ModalManager({
-                viewUrl: '/Cloudflare/Dns/CredentialModal',
+                viewUrl: '/Cloudflare/Dns/CredentialModal?handler=Edit',
            });
            addCredentialModel.open({ credentialId });
            addCredentialModel.onResult(function () {

@@ -13,7 +13,6 @@ public class CloudflareCredentialService: CloudflareAppService, ICloudflareCrede
 {
     private readonly ILogger<CloudflareCredentialService> _logger;
     private readonly IRepository<CloudflareCredential, Guid> _cloudflareCredentialRepository;
-    private ICloudflareCredentialService _cloudflareCredentialServiceImplementation;
 
     public CloudflareCredentialService(ILogger<CloudflareCredentialService> logger, IRepository<CloudflareCredential, Guid> cloudflareCredentialRepository)
     {
@@ -45,16 +44,12 @@ public class CloudflareCredentialService: CloudflareAppService, ICloudflareCrede
         await _cloudflareCredentialRepository.DeleteAsync(id);
     }
 
-    public async Task<List<CloudflareCredential>> GetCredentialsAsync(PaginatedDto? filter)
+    public async Task<List<CloudflareCredential>> GetCredentialsAsync(PaginatedDto filter)
     {
-        if (filter != null)
-        {
-            var skip = filter.Skip == 0 ? 1 : filter.Skip * filter.MaxResultCount;
-            var maxResultCount = filter.MaxResultCount;
-            var sort = filter.Sorting ?? "asc";
-            return await _cloudflareCredentialRepository.GetPagedListAsync(skipCount:skip, maxResultCount: maxResultCount, sorting: sort);
-        }
-        return await _cloudflareCredentialRepository.GetListAsync();
+        var skip = filter.Skip;
+        var maxResultCount = filter.MaxResultCount;
+        var sort = filter.Sorting ?? "asc";
+        return await _cloudflareCredentialRepository.GetPagedListAsync(skipCount:skip, maxResultCount: maxResultCount, sorting: sort);
     }
 
     public async Task<long> GetCredentialsCountAsync()

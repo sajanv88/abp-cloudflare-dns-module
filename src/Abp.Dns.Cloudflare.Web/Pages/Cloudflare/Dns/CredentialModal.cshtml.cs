@@ -9,19 +9,22 @@ using Microsoft.Extensions.Logging;
 
 namespace Abp.Dns.Cloudflare.Web.Pages.Cloudflare.Dns;
 
+
 public class CredentialModal : PageModel
 {
     private readonly ICloudflareCredentialService _cloudflareCredentialService;
     private readonly ILogger<CredentialModal> _logger;
 
+  
     public CredentialModal(ICloudflareCredentialService cloudflareCredentialService, 
         ILogger<CredentialModal> logger)
     {
         _cloudflareCredentialService = cloudflareCredentialService;
         _logger = logger;
+    
     }
     
-    private static CloudflareCredential _cloudflareCredential { get; set; }
+    public  CloudflareCredential CloudflareCredential { get; set; }
 
     [BindProperty] public CreateDnsCredentialDto Input { get; set; }
     
@@ -30,26 +33,31 @@ public class CredentialModal : PageModel
         _logger.LogInformation("Credential Modal Loaded with id: {id}", credentialId);
         if (credentialId != Guid.Empty)
         {
-            _cloudflareCredential = await _cloudflareCredentialService.GetCredentialAsync(credentialId);
-            _logger.LogInformation("Credential Modal Loaded with credential: {credential}", _cloudflareCredential.ZoneId);
-            Input = new CreateDnsCredentialDto() { ZoneId = _cloudflareCredential.ZoneId, ApiKey = _cloudflareCredential.ApiKey };
+         
+            CloudflareCredential = await _cloudflareCredentialService.GetCredentialAsync(credentialId);
+            _logger.LogInformation("Credential Modal Loaded with credential: {credential}",
+                CloudflareCredential.ZoneId);
+            Input = new CreateDnsCredentialDto()
+                { ZoneId = CloudflareCredential.ZoneId, ApiKey = CloudflareCredential.ApiKey };
+            await Task.CompletedTask;
         }
-        await Task.CompletedTask;
+    
+       
     }
     
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostCreateAsync()
     {
-        if (_cloudflareCredential != null)
-        {
-            _logger.LogInformation("Credential Id: {id}", _cloudflareCredential.Id);
-            _logger.LogInformation("Updating DNS Credential with input: {zone} and {apikey}", Input.ZoneId, Input.ApiKey);
-            await _cloudflareCredentialService.UpdateDnsCredentialAsync(_cloudflareCredential.Id, Input);
-            _cloudflareCredential = null;
-            return new NoContentResult();
-        }
         _logger.LogInformation("Creating DNS Credential with input: {zone} and {apikey}", Input.ZoneId, Input.ApiKey);
         await _cloudflareCredentialService.CreateDnsCredentialAsync(Input);
         return new NoContentResult();
     }
 
-}   
+    public async Task<IActionResult> OnPostEditAsync(Guid credentialId)
+    {
+        _logger.LogInformation("Credential Id: {id}", credentialId);
+        _logger.LogInformation("Updating DNS Credential with input: {zone} and {apikey}", Input.ZoneId, Input.ApiKey);
+        await _cloudflareCredentialService.UpdateDnsCredentialAsync(credentialId, Input);
+        return new NoContentResult();
+    }
+
+}
