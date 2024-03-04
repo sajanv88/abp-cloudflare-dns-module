@@ -14,7 +14,7 @@ public class DeleteCredentialModel : PageModel
     private readonly ICloudflareCredentialService _cloudflareCredentialService;
     private readonly ILogger<DeleteCredentialModel> _logger;
     
-    private static Guid _credentialId { get; set; }
+
     
     public DeleteCredentialModel(ICloudflareCredentialService cloudflareCredentialService, 
         ILogger<DeleteCredentialModel> logger)
@@ -28,18 +28,17 @@ public class DeleteCredentialModel : PageModel
     {
         Input = await _cloudflareCredentialService.GetCredentialAsync(credentialId);
         _logger.LogInformation("Credential Modal Loaded with credential: {credential}", Input.Id);
-        _credentialId = credentialId;
     }
     
-    public async Task<IActionResult> OnPostAsync()
+    public async Task<IActionResult> OnPostAsync(Guid credentialId)
     {
-        if (Input == null)
+        if (credentialId == Guid.Empty)
         {
             throw new NullReferenceException("CloudflareCredential is null");
         }
-        _logger.LogInformation("Deleting DNS Credential with id: {id}", _credentialId);
-        await _cloudflareCredentialService.DeleteDnsCredentialAsync(_credentialId);
-        _credentialId = Guid.Empty;
+        _logger.LogInformation("Deleting DNS Credential with id: {id}", credentialId);
+        await _cloudflareCredentialService.DeleteDnsCredentialAsync(credentialId);
+
         return new AcceptedResult();
     }
 }

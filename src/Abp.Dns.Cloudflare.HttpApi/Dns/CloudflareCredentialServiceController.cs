@@ -62,20 +62,4 @@ public class CloudflareCredentialServiceController: CloudflareController, ICloud
     {
         return await _cloudflareCredentialService.GetCredentialAsync(id);
     }
-
-    [Route("tenants/{tenantId}")]
-    [HttpGet]
-    public async Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
-    {
-        return await _cloudflareCredentialService.GetCredentialByTenantIdAsync(tenantId);
-    }
-
-    [Route("tenants/zones/{id}")]
-    [HttpGet]
-    public async Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
-    {
-        return await _cloudflareCredentialService.GetZoneCredentialsForTenantsAsync(id); 
-    }
-    
-    
 }

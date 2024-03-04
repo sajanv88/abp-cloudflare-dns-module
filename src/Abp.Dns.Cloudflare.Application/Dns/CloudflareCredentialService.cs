@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Dns.Cloudflare.Models;
 using Microsoft.Extensions.Logging;
@@ -60,15 +61,5 @@ public class CloudflareCredentialService: CloudflareAppService, ICloudflareCrede
     public async Task<CloudflareCredential> GetCredentialAsync(Guid id)
     {
         return await _cloudflareCredentialRepository.GetAsync(id);
-    }
-
-    public Task<CloudflareCredential> GetCredentialByTenantIdAsync(Guid tenantId)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<List<CloudflareCredential>> GetZoneCredentialsForTenantsAsync(Guid id)
-    {
-        throw new NotImplementedException();
     }
 }
