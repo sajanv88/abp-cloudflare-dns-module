@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Abp.Dns.Cloudflare.Dns;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Abp.Dns.Cloudflare.Web.Pages.Cloudflare.Dns;
 
@@ -8,21 +10,30 @@ public class Index : PageModel
 {
 
     private readonly IDnsService _dnsService;
-
-    public Index(IDnsService dnsService)
+    private readonly ICloudflareCredentialService _cloudflareCredentialService;
+    private readonly ILogger<Index> _logger;
+    public DnsDto DnsDto { get; set; } = new DnsDto();
+    public bool Loading { get; set; } = true;
+    public Index(IDnsService dnsService, ILogger<Index> logger,
+        ICloudflareCredentialService cloudflareCredentialService)
     {
         _dnsService = dnsService;
+        _logger = logger;
+        _cloudflareCredentialService = cloudflareCredentialService;
     }
 
-    public string ZoneId { get; set; }
+
     
-    public void OnGet(string zoneId)
+    public async Task OnGetAsync(string zoneId)
     {
-        ZoneId = zoneId;
+
+        Loading = true;
+        await LoadDnsList(zoneId);
     }
 
-    private async Task LoadDnsList()
+    private async Task LoadDnsList(string zoneId)
     {
-        await _dnsService.GetDnsRecordsByZoneIdAsync(zoneId: ZoneId);
+       DnsDto = await _dnsService.GetDnsRecordsByZoneIdAsync(zoneId);
+       Loading = false;
     }
 }

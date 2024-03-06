@@ -20,17 +20,11 @@ public class DnsController : CloudflareController, IDnsService
         _dnsService = dnsService;
     }
     
-    [HttpGet]
-    public async Task<DnsDto> GetZonesAsync()
-    {
-        return await _dnsService.GetZonesAsync();
-    }
-    
-    [Route("zone/{zoneId}")]
+    [Route("zones/{zoneId}")]
     [HttpGet]
     public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
     {
-        return await _dnsService.GetDnsRecordsByZoneIdAsync(zoneId);
+        throw new NotImplementedException();
     }
 
     

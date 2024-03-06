@@ -6,6 +6,7 @@ using Abp.Dns.Cloudflare.Models;
 using Microsoft.Extensions.Logging;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Entities;
 using Volo.Abp.Domain.Repositories;
 
 namespace Abp.Dns.Cloudflare.Dns;
@@ -61,5 +62,11 @@ public class CloudflareCredentialService: CloudflareAppService, ICloudflareCrede
     public async Task<CloudflareCredential> GetCredentialAsync(Guid id)
     {
         return await _cloudflareCredentialRepository.GetAsync(id);
+    }
+
+    public async Task<CloudflareCredential> GetCredentialByZoneIdAsync(string zoneId)
+    {
+        _logger.LogInformation($"Received request to get credential by zoneId: {zoneId}");
+        return await _cloudflareCredentialRepository.GetAsync(z => z.ZoneId == zoneId);
     }
 }

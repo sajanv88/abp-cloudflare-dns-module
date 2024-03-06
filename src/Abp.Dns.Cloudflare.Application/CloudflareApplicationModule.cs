@@ -28,26 +28,14 @@ public class CloudflareApplicationModule : AbpModule
         {
             var cloudflareConfig = context.Services.GetConfiguration().GetRequiredSection("Dns:Cloudflare");
             var cloudflareApiUrl = cloudflareConfig.GetValue<string>("Endpoint");
-            var cloudflareApikey = cloudflareConfig.GetValue<string>("ApiKey");
-            var cloudflareZoneId = cloudflareConfig.GetValue<string>("ZoneId");
             if (cloudflareApiUrl == null)
             {
                 throw new ArgumentNullException("Dns:Cloudflare:Endpoint", "Cloudflare API endpoint is not configured");
             }
-
-            if (cloudflareApikey == null)
-            {
-                throw new ArgumentNullException("Dns:Cloudflare:ApiKey", "Cloudflare API key is not configured");
-            }
-
-            if (cloudflareZoneId == null)
-            {
-                throw new ArgumentNullException("Dns:Cloudflare:ZoneId", "Cloudflare Zone ID is not configured");
-            }
             
             var httpClient = new HttpClient();
             httpClient.BaseAddress = new Uri(cloudflareApiUrl);
-            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {cloudflareApikey}");
+          
             return httpClient;
         });
     }

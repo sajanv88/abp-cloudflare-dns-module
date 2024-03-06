@@ -2,4 +2,57 @@
 
 @model Abp.Dns.Cloudflare.Web.Pages.Cloudflare.Dns.Index
 
-<h1>List of dns</h1>
+@if (Model.DnsDto.Success == false)
+{
+    <abp-alert alert-type="Danger">
+        @foreach (var error in Model.DnsDto.Errors)
+        {
+            <div>@error.Message</div>
+        }
+    </abp-alert>
+}
+else if (Model.DnsDto.Result.Count == 0)
+{
+    <abp-alert alert-type="Info" >No Dns found</abp-alert>
+}
+else
+{
+    <section>
+        <abp-table hoverable-rows="true" responsive-sm="true">
+            <thead>
+            <tr>
+                <th scope="Column">Type</th>
+                <th scope="Column">Name</th>
+                <th scope="Column">Content</th>
+                <th scope="Column">Comment</th>
+                <th scope="Column">Proxy Status</th>
+                <th scope="Column">TTL</th>
+                <th scope="Column">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var dns in Model.DnsDto.Result)
+                {
+                    <tr scope="row">
+                        <td class="align-middle">@dns.Type</td>
+                        <td class="align-middle">@dns.Name</td>
+                        <td class="align-middle">@dns.Content</td>
+                        <td class="align-middle">@dns.Comment</td>
+                        <td class="align-middle">@dns.Proxied</td>
+                        <td class="align-middle">@dns.TTL</td>
+                        <td>
+                            <abp-dropdown>
+                                <abp-dropdown-button button-type="Primary" text="Actions" />
+                                <abp-dropdown-menu>
+                                    <abp-dropdown-item href="javascript:void(0)" onclick="onEditDns('@dns.Id')">Edit</abp-dropdown-item>
+                                    <abp-dropdown-item href="#" onclick="onDeleteDns('@dns.Id')">Delete</abp-dropdown-item>
+                                </abp-dropdown-menu>
+                            </abp-dropdown>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </abp-table>
+    </section>
+}
+

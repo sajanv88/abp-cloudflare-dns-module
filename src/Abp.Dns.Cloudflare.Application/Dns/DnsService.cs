@@ -16,40 +16,32 @@ namespace Abp.Dns.Cloudflare.Dns;
 public class DnsService: CloudflareAppService, IDnsService
 {
     private readonly HttpClient _httpClient;
-    private readonly IConfiguration _configuration;
     private readonly ILogger<DnsService> _logger;
-    private readonly IRepository<CloudflareCredential, Guid> _cloudflareCredentialRepository;
+    private readonly ICloudflareCredentialService _cloudflareCredentialService;
     public DnsService(
         HttpClient httpClient,
-        IConfiguration configuration,
-        ILogger<DnsService> logger, IRepository<CloudflareCredential, Guid> cloudflareCredentialRepository)
+        ILogger<DnsService> logger, ICloudflareCredentialService cloudflareCredentialService)
     {
         _httpClient = httpClient;
-        _configuration = configuration;
         _logger = logger;
-        _cloudflareCredentialRepository = cloudflareCredentialRepository;
+        _cloudflareCredentialService = cloudflareCredentialService;
     }
-    
-    public async Task<DnsDto> GetZonesAsync()
-    {
-        var zoneId = _configuration["Dns:Cloudflare:ZoneId"];
+
+    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
+    { 
         var path = _httpClient.BaseAddress + CloudflareEndpointPath.GetZones.Replace("{zone_id}", zoneId);
-        _logger.LogInformation("Requesting....: {path}", path);
+        var credential = await _cloudflareCredentialService.GetCredentialByZoneIdAsync(zoneId);
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {credential.ApiKey}");
         try
         {
             var response = await _httpClient.GetAsync(path);
             return await response.Content.ReadFromJsonAsync<DnsDto>() 
                    ?? throw new UserFriendlyException("Error getting DNS", "No content returned");
-            
         }catch(Exception e)
         {
             _logger.LogError(e, "Error getting DNS: {message}", e.Message);
             throw new UserFriendlyException("Error getting DNS", e.Message);
         }
-    }
-
-    public Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
-    {
-        throw new NotImplementedException();
+      
     }
 }

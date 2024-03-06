@@ -55,6 +55,14 @@ public class CloudflareCredentialServiceController: CloudflareController, ICloud
     {
         return _cloudflareCredentialService.GetCredentialsCountAsync();
     }
+    
+    
+    [Route("zones/{zoneId}")]
+    [HttpGet]
+    public async Task<CloudflareCredential> GetCredentialByZoneIdAsync(string zoneId)
+    {
+        return await _cloudflareCredentialService.GetCredentialByZoneIdAsync(zoneId);
+    }
 
     [Route("{id}")]
     [HttpGet]
@@ -62,4 +70,5 @@ public class CloudflareCredentialServiceController: CloudflareController, ICloud
     {
         return await _cloudflareCredentialService.GetCredentialAsync(id);
     }
+
 }

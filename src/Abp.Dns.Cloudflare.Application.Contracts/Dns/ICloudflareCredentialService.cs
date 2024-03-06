@@ -14,5 +14,6 @@ public interface ICloudflareCredentialService : IApplicationService
     Task<List<CloudflareCredential>> GetCredentialsAsync(PaginatedDto filter);
     Task<long> GetCredentialsCountAsync();
     Task<CloudflareCredential> GetCredentialAsync(Guid id);
+    Task<CloudflareCredential> GetCredentialByZoneIdAsync(string zoneId);
 
 }
