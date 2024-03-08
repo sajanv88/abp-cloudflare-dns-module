@@ -22,9 +22,9 @@ public class DnsController : CloudflareController, IDnsService
     
     [Route("zones/{zoneId}")]
     [HttpGet]
-    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId)
+    public async Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId, [FromQuery] DnsQueryParametersDto? dnsQueryParameters = null)
     {
-        throw new NotImplementedException();
+        return await _dnsService.GetDnsRecordsByZoneIdAsync(zoneId, dnsQueryParameters);
     }
 
     

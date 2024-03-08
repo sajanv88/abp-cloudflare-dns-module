@@ -18,6 +18,10 @@ else if (Model.DnsDto.Result.Count == 0)
 else
 {
     <section>
+        <p>Total count: @Model.DnsDto.ResultInfo.TotalCount</p>
+        <p>Page: @Model.DnsDto.ResultInfo.Page</p>
+        <p>Per page: @Model.DnsDto.ResultInfo.PerPage</p>
+        <p>Count: @Model.DnsDto.ResultInfo.Count</p>
         <abp-table hoverable-rows="true" responsive-sm="true">
             <thead>
             <tr>

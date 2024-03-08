@@ -9,6 +9,7 @@ public class DnsResultDto
     public string Name { get; set; } = string.Empty;
     public bool Proxied { get; set; } = false;
     public string Type { get; set; } = string.Empty;
+    public DnsMetaDto Meta { get; set; } = new DnsMetaDto();
     [JsonPropertyName("zone_id")]
     public string ZoneId { get; set; } = string.Empty;
     public string Comment { get; set; } = string.Empty;

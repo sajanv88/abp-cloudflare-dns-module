@@ -5,5 +5,5 @@ namespace Abp.Dns.Cloudflare.Dns;
 
 public interface IDnsService : IApplicationService
 {
-    Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId);
+    Task<DnsDto> GetDnsRecordsByZoneIdAsync(string zoneId, DnsQueryParametersDto? queryParameters = null);
 }
